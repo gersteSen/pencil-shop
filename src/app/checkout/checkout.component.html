@@ -1,0 +1,35 @@
+@for (order of orders(); track $index) {
+  <div class="my-2 border-t border-gray-100"></div>
+  <div class="flex flex-row gap-x-4">
+    <div>
+      <img
+        [src]="order.product.imageUrl"
+        [attr.alt]="order.product.name"
+        class="h-24 rounded-md object-contain"
+      />
+    </div>
+    <div class="flex grow flex-col justify-between">
+      <div>
+        <div class="font-bold">{{ order.product.name }}</div>
+        <div class="text-gray-400">{{ order.product.description }}</div>
+      </div>
+      <div class="flex flex-row justify-between gap-4">
+        <div class="flex flex-grow flex-row gap-x-2">
+          <div>{{ order.amount }} Stk. je</div>
+          <div>{{ order.product.price }} EUR</div>
+        </div>
+        <div class="text-right font-bold">
+          {{ order.product.price * order.amount | number: "1.2-2" }} EUR
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@if (shopState.orders().length > 0) {
+  <div
+    class="mt-4 flex flex-row justify-between border-t border-gray-500 font-bold"
+  >
+    <div>Gesamt</div>
+    <div>{{ shopState.totalSum() | number: "1.2-2" }} EUR</div>
+  </div>
+}
