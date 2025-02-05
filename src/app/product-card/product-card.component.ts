@@ -6,13 +6,13 @@ import {
   input,
   InputSignal,
   Output,
-  output
+  output,
 } from '@angular/core';
 import { ProductCardApi } from './product-card-interface';
 
 @Component({
   selector: 'app-product-card',
-  templateUrl: './product-card.component.html'
+  templateUrl: './product-card.component.html',
 })
 export class ProductCardComponent {
   @Input({ required: true }) product!: ProductCardApi;
