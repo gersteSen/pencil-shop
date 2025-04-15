@@ -1,0 +1,29 @@
+.card {
+  background: #ccc;
+
+  display: grid;
+  grid-template-areas:
+    "header"
+    "description"
+    "action-btns";
+}
+
+#header {
+  grid-area: header;
+  background: yellow;
+}
+
+#description {
+  grid-area: description;
+}
+
+#action-btns {
+  grid-area: action-btns;
+  background: pink;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 80px);
+  grid-template-rows: repeat(2, 80px);
+  gap: 1rem;
+}
