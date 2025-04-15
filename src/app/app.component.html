@@ -1,22 +1,3 @@
-<div class="grid h-screen grid-cols-[100px_1fr_600px] grid-rows-[120px_1fr]">
-  <div class="col-span-3">
-    <h1
-      class="font-fleur inline-block bg-gradient-to-r from-orange-600 to-orange-300 bg-clip-text p-6 text-6xl text-transparent"
-    >
-      Pencil Shop
-    </h1>
-  </div>
-  <div class="px-4 text-white">Sidebar</div>
-  <div class="flex flex-row flex-wrap gap-x-2 gap-y-16 px-4 md:gap-x-8">
-    @for (product of products; track product.id) {
-      <app-product-card
-        [product]="product"
-        (addToWarenkorbEvent)="addToWarenkorb($event)"
-      />
-    }
-  </div>
-  <div class="pr-8">
-    <h1 class="font-fleur mb-4 text-4xl">Shopping Cart</h1>
-    <app-checkout />
-  </div>
-</div>
+<button appNativeButton (click)="toggleTheme()">Nativ Button</button>
+
+<h1 appHeading>Tobias Gerstenecker</h1>

@@ -1,20 +1,27 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, Renderer2, signal } from '@angular/core';
 import { ProductCardApi } from './product-card/product-card-interface';
 import { mockProducts } from './products.mock';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+
 import { Checkout } from './checkout/checkout.interface';
 import { ShopState } from './_state/shop.state';
-import { JsonPipe } from '@angular/common';
+import { HighlightDirective } from './directives/highlight.directive';
+import { NativeButtonDirective } from './directives/native-button.directive';
+import { HeadingDirective } from './directives/heading.directive';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [ProductCardComponent, CheckoutComponent],
+  styleUrl: './app.component.css',
+  imports: [NativeButtonDirective, HeadingDirective],
 })
 export class AppComponent {
+  renderer = inject(Renderer2);
   products: ProductCardApi[] = mockProducts;
   newItems = signal<Checkout[]>([]);
+  theme = signal<'light' | 'dark'>('light');
+  themeIcon = computed<'light_mode' | 'dark_mode'>(() => {
+    return this.theme() === 'light' ? 'dark_mode' : 'light_mode';
+  });
 
   shopState = inject(ShopState);
   orders = this.shopState.orders;
@@ -25,5 +32,14 @@ export class AppComponent {
       product: $event,
       amount: 1,
     });
+  }
+
+  toggleTheme(): void {
+    this.theme.update((state) => (state === 'light' ? 'dark' : 'light'));
+    this.renderer.setAttribute(
+      document.documentElement,
+      'data-theme',
+      this.theme(),
+    );
   }
 }

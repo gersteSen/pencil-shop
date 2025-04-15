@@ -1,10 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fleur+De+Leah&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap");
 
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/* light theme */
+:root {
+  background: white;
+  color: black;
+
+  --primaere-action: var(--color-gray-100);
+
+  --condensed-border: var(--color-gray-100);
+  --card-background: var(--gray-50);
+}
+[data-theme="dark"] {
+  background: var(--color-gray-950);
+  color: var(--color-gray-200);
+  --condensed-border: var(--color-gray-800);
+  --card-background: var(--gray-800);
+  --primaere-action: green;
+}
 
 @theme {
   --font-fleur: "Fleur De Leah", serif;
   --font-barlow: "Barlow", serif;
   --font-sans: "Barlow", serif;
+  --font-heading: "Londrina Shadow", sans-serif;
+  --color-condensed: var(--condensed-border);
+}
+
+.card {
+  background: var(--card-background);
+}
+
+.monster-heading-6xl {
+  @apply font-heading inline-block bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 bg-clip-text text-6xl text-transparent;
 }
